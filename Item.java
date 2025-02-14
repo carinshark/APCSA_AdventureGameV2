@@ -6,10 +6,47 @@ public class Item {
     private int useHealth;
     private String useText;
 
-    public Item(String name,String text,int uses,int health,String useText){
-        
+    public Item(String name,String text,int uses,int useHealth,String useText){
+        this.name = name;
+        this.text = text;
+        this.uses = uses;
+        this.useHealth = useHealth;
+        this.useText = useText;
 
 
+    }
+
+    public String getName(){
+        return name;
+    }
+    public String getText(){
+        return text;
+    }
+    public int getUses(){
+        return uses;
+    }
+
+    public void setParent(Player parent){
+        this.parent = parent;
+    }
+
+    public boolean use(){
+        if (uses==0){
+            return false;
+        }
+        else{
+            if (uses>0){
+                uses--;
+            }
+            if (useHealth!=0){
+                parent.addHealth(useHealth);
+                System.out.println(useHealth+" hp");
+            }
+            
+
+            System.out.println(useText);
+            return true;
+        }
     }
 
 

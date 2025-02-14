@@ -33,6 +33,12 @@ public class Room {
     public int getId(){
         return id;
     }
+    public Challenge getChallenge(){
+        return challenge;
+    }
+    public void openDoors(){
+        canLeave = true;
+    }
     
 
 
