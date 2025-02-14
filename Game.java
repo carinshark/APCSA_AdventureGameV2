@@ -25,7 +25,7 @@ public class Game {
         boolean gameRunning = true;
 
         System.out.println("what is your name?");
-        Player currentPlayer = new Player(scan.nextLine(),null);
+        Player currentPlayer = new Player(scan.nextLine(),getRoom(allRooms, 0));
         
         String playerResponse = "";
 
@@ -33,42 +33,50 @@ public class Game {
             System.out.print("your move(type \"h\" for options): ");
             playerResponse = scan.nextLine();
             
-            switch (playerResponse) {
-                case "h":
-                    System.out.println("h - help\n");
-                    break;
-                case "move":
-                    if (currentPlayer.getLocation().canLeave()){
-                        System.out.print("pick a direction:");
-                        for (int i =0;i<currentPlayer.getLocation().getDoors().length();i++){
-                            System.out.print(currentPlayer.getLocation().getDoors().substring(i,i+1)+", ");
+            if (playerResponse.equals("h")){
+                System.out.println("h - help\nend - end game loop\nmove - switch rooms\nsolve- do the room's challenge");
+            }
+            else if (playerResponse.equals("end")){
+                gameRunning = false;
+            }
+            else if (playerResponse.equals("move")){
+                if (currentPlayer.getLocation().canLeave()){
+                    System.out.print("pick a direction:");
+                    for (int i =0;i<currentPlayer.getLocation().getDoors().length();i++){
+                        System.out.print(currentPlayer.getLocation().getDoors().substring(i,i+1)+", ");
 
-                        }
-                        playerResponse = scan.nextLine();
-                        if (currentPlayer.getLocation().getDoors().indexOf(playerResponse)>0 && playerResponse.length()==1){
-                            if (playerResponse.equals("n")){
-                                
-                            } else if (playerResponse.equals("s")){
-
-                            } else if (playerResponse.equals("e")){
-
-                            } else if (playerResponse.equals("w")){
-
-                            }
-                        }
-                        else{
-                            System.out.println("that is not a valid move!");
+                    }
+                    playerResponse = scan.nextLine();
+                    if (currentPlayer.getLocation().getDoors().indexOf(playerResponse)>0 && playerResponse.length()==1){
+                        if (playerResponse.equals("n")){
+                            currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()+100));
+                        } else if (playerResponse.equals("s")){
+                            currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()-100));
+                        } else if (playerResponse.equals("e")){
+                            currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()+10));
+                        } else if (playerResponse.equals("w")){
+                            currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()-10));
                         }
                         
-                    } else{
-                        System.out.println("The doors are not open yet!");
+                    }
+                    else{
+                        System.out.println("that is not a valid move!");
                     }
                     
+                } else{
+                    System.out.println("The doors are not open yet! Try solving the puzzle!");
+                }
+                
 
-
-                default:
-                    System.out.println("I dont know what that is.");
             }
+
+            else if (playerResponse.equals("solve")) {
+                
+            }
+            else{
+                System.out.println("I dont know what that is.");
+            }
+            
             
 
 
@@ -77,7 +85,19 @@ public class Game {
 
     }
 
-    
+
+    public static Room getRoom(ArrayList<Room> rooms,int position){
+        for (int i=0;i<rooms.size();i++){
+
+            if (rooms.get(i).getId()==position){
+                return rooms.get(i);
+            }
+        }
+        System.out.println("ROOM NOT FOUND:"+position);
+        return null;
+    }
+
+
 
 
 

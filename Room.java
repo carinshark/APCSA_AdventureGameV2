@@ -29,6 +29,10 @@ public class Room {
     public boolean canLeave(){
         return canLeave;
     }
+
+    public int getId(){
+        return id;
+    }
     
 
 
