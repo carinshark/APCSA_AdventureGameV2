@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -5,6 +6,21 @@ public class Game {
 
 
     public static void main(String[] args) {
+        ArrayList<Room> allRooms = new ArrayList<Room>();
+        
+        String[] c0000 = {"Go into the door","Approach the bird"};
+        String[] res0000 = {"You walk into a dark room. All of a sudden the ground slides open and you fall onto a slide which brings you into a room underground, and the way you came in closes. It looks like this room also closes as soon as you step out.","The hummingbird pecks at you! You get knocked back to the door"};
+        int[] h0000 = {0,-10};
+        Item[] rew0000 = {null,null};
+        boolean[] rep0000 = {false,true};
+        boolean[] doorOpens = {true,false};
+
+        allRooms.add(new Room("Tavern",0,"n",
+        "You wake up in… a cardboard box in the back of the tavern? You open a door that leads outside, but before you take a step, you hear a loud chirp and stop.",
+        new Challenge( "A very angry looking hummingbird wearing a cloak stands on the other side of the door. You also notice a door behind you.", c0000, res0000, h0000, h0000, doorOpens, rep0000, rew0000, rep0000),
+        false));
+
+
         Scanner scan = new Scanner(System.in);
         boolean gameRunning = true;
 
@@ -22,14 +38,14 @@ public class Game {
                     System.out.println("h - help\n");
                     break;
                 case "move":
-                    if (currentPlayer.location.canLeave){
+                    if (currentPlayer.getLocation().canLeave()){
                         System.out.print("pick a direction:");
-                        for (int i =0;i<currentPlayer.location.doors.length();i++){
-                            System.out.print(currentPlayer.location.doors.substring(i,i+1)+", ");
+                        for (int i =0;i<currentPlayer.getLocation().getDoors().length();i++){
+                            System.out.print(currentPlayer.getLocation().getDoors().substring(i,i+1)+", ");
 
                         }
                         playerResponse = scan.nextLine();
-                        if (currentPlayer.location.doors.indexOf(playerResponse)>0 && playerResponse.length()==1){
+                        if (currentPlayer.getLocation().getDoors().indexOf(playerResponse)>0 && playerResponse.length()==1){
                             if (playerResponse.equals("n")){
                                 
                             } else if (playerResponse.equals("s")){
@@ -60,5 +76,10 @@ public class Game {
 
 
     }
+
+    
+
+
+
     
 }

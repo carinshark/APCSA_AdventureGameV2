@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Player {
-    String name;
-    int health;
-    ArrayList<Item> inventory = new ArrayList<Item>();
-    Room location;
+    private String name;
+    private int health;
+    private ArrayList<Item> inventory = new ArrayList<Item>();
+    private Room location;
 
 
     public Player(String name,Room location){
@@ -14,6 +14,10 @@ public class Player {
 
     public boolean isAlive(){
         return (health>0);
+    }
+
+    public Room getLocation(){
+        return location;
     }
 
 }
