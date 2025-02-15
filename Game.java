@@ -85,10 +85,99 @@ public class Game {
         boolean[] doorOpens202 = {true};
         Item[] req202 = null;
         boolean[] win202 = null;
-        allRooms.add(new Room(NAME,202,DOORS,DESCRIPTION,
-        new Challenge( PROMPT, c202, res202, h202, rew202, doorOpens202, rep202, req202, win202),LEAVE));
+        allRooms.add(new Room("Room of Healing",202,"nse", "A room for resting… a room to prepare you for what's ahead… There are cups of healing potions everywhere",
+        new Challenge( "Take what you need. \n Potions kindly donated by the Wizard Statue Society", c202, res202, h202, rew202, doorOpens202, rep202, req202, win202),true));
 
+
+        //ROOM 200
+        String[] c200 = { "Yes!","No!!!","I prefer the art of combat"};
+        String[] res200 = { "Have a free trial blacksmith hammer! You only get one use out of it :)\nthe blacksmith disappears in a blinding light, leaving nothing but a hammer behind","ok  ToT \nthe blacksmith runs away crying to a secret door that closes behind him","I see I see… too bad for you I only make weapons not use them :p\nthe blacksmith vanished before your eyes."};
+        int[] h200 = {0,0,0};
+        Item[] rew200 = {hammer,null,null};
+        boolean[] rep200 = {false,false,false};
+        boolean[] doorOpens200 = {true,true,true};
+        Item[] req200 = null;
+        boolean[] win200 = null;
+        allRooms.add(new Room("Summoning Altar",200,"ns", "You see an encryption on the wall, but cannot make sense of it.",
+        new Challenge( "Someone wearing a leather apron holding a hammer stands in front of you. They ask you: \"are you interested in the art of blacksmithing?\"", c200, res200, h200, rew200, doorOpens200, rep200, req200, win200),false));
+
+
+
+        //ROOM 300
+        String[] c300 = { "Pour Healing Potion","Go Around the lava","Jump over it"};
+        String[] res300 = { "The healing potion manages to cool down the lava just enough to walk over it.","You follow the lava back to your original position, for the moat surrounds you entirely.","You manage to jump over the lava, but a little bit splashes onto you. It burns."};
+        int[] h300 = {0,0,-40};
+        Item[] rew300 = {null,null,null};
+        boolean[] rep300 = {false,true,false};
+        boolean[] doorOpens300 = {true,false,true};
+        Item[] req300 = {potion,null,null};
+        boolean[] win300 = null;
+        allRooms.add(new Room("Lava River",300,"se","You arrive at a room with with an empty circular moat in the center.",
+        new Challenge(  "You hear gears rotating, and lava starts flowing, filling up the moat. The lava constantly splashes upwards.", c300, res300, h300, rew300, doorOpens300, rep300, req300, win300),false));
+
+
+        //ROOM 301
+        String[] c301 = { "Nothing","Shield","Fork"};
+        String[] res301 = { "The forge looks at you sadly…","You crafted a shield that can deflect anything!","A fork… Interesting choice!"};
+        int[] h301 = {0,0,0};
+        Item[] rew301 = {null,shield,fork};
+        boolean[] rep301 = {true,true,true};
+        boolean[] doorOpens301 = {true,true,true};
+        Item[] req301 = {null,hammer,hammer};
+        boolean[] win301 = null;
+        allRooms.add(new Room("Forge",301,"ew","Craft to your heart's desire… If you have a hammer",
+        new Challenge( "What would you like to craft?", c301, res301, h301, rew301, doorOpens301, rep301, req301, win301),true));
+
+
+
+        //ROOM 302
+        String[] c302 = { "rock","paper","scissors"};
+        String[] res302 = { "You win!","You tie!","You lost!"};
+        int[] h302 = {0,0,0};
+        Item[] rew302 = {null,null,null};
+        boolean[] rep302 = {false,false,false};
+        boolean[] doorOpens302 = {true,true,true};
+        Item[] req302 = null;
+        boolean[] win302 = null;
+        allRooms.add(new Room("Challenger",302,"sw","A very competitive person stands in the middle of the room",
+        new Challenge( "They ask you to a friendly game of rock paper scissors!", c302, res302, h302, rew302, doorOpens302, rep302, req302, win302),false));
+
+
+        //ROOM 203
+        allRooms.add(new Room("Warning Room",203,"ws","Be warned… if south you turn, there shall be no return",
+        null,true));
+
+
+
+        //ROOM 103
+        String[] c103 = { "I don't have anything","Give Health Potion","Give Schrödinger's Chalice","Give Tomato Rock","Give Carrot Rock","Use Fork"};
+        String[] res103 = { "You watch them eat a feast, and then kill you.","The mysterious person feels fully healed! They then proceed to kill you…","You give them the chalice. They drink it. They proceed to exist and not exist at the same time, but then gets observed and dies.","You give them the rock. They see through it instantly and throws it at your feet. They try kill you, but at the last minute trip on the rock and fall flat on you","They try eating it, but being a rock, it was hard. They are so focused on it that you can slip right past.","You use the fork and eat a small portion of food, making it impossible to finish the feast, so you survive."};
+        int[] h103 = { -100,-100,0,-90,0,0};
+        Item[] rew103 = { null,null,null,null,null,null};
+        boolean[] rep103 = { false,false,false,false,false,false};
+        boolean[] doorOpens103 = { false,false,true,true,true,true};
+        Item[] req103 = {null,potion,chalice,tomato,carrot,fork};
+        boolean[] win103 = null;
+        allRooms.add(new Room("Feasting Hall",103,"s","No turning back now… \nYou see someone sitting in front of you across a table.",
+        new Challenge("The mysterious person tells you that they are gonna kill you after eating the feast. They proceed to ask you if you brought anything with you for them to feast on", c103, res103, h103, rew103, doorOpens103, rep103, req103, win103),false));
         
+
+        //ROOM 3
+        String[] c3 = { "Do nothing","Use map","Throw tomato rock","Throw carrot rock","Use Shield"};
+        String[] res3 = { "The wizard casts a fireball upon you. It really hurts.","You hold out the map. A fireball comes at you and goes right through it.","The wizard catches the rock. All of a sudden, it says \"Oh I love tomatoes I'm gonna put this on my shelf!\"","You throw the tomato rock, intercepting a fireball midair. The wizard looks angry.","Your shield causes the spell to bounce back and defeat the wizard!"};
+        int[] h3 = { -50,-50,0,0,0};
+        Item[] rew3 = { null,null,null,null,null};
+        boolean[] rep3 = { true,true,false,true,false};
+        boolean[] doorOpens3 = { false,false,false,false,false};
+        Item[] req3 = {null,map,tomato,carrot,shield};
+        boolean[] win3 = { false,false,true,false,true};
+        allRooms.add(new Room("End…?",3,"", "The statue of the wizard returns… It comes to life!!! ",
+        new Challenge("The wizard prepares to attack. Looks like it's charging up a spell, giving you time"
+        , c3, res3, h3, rew3, doorOpens3, rep3, req3, win3),false));
+
+
+
+
 
 
         Scanner scan = new Scanner(System.in);
