@@ -56,6 +56,9 @@ public class Challenge {
     public boolean isComplete(){
         return isComplete;
     }
+    public void complete(){
+        isComplete = true;
+    }
 
 
 

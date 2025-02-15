@@ -46,7 +46,9 @@ public class Item {
             }
             
 
-            System.out.println(useText);
+            if (useText!= null){
+                System.out.println(useText);
+            }
         }
     }
 

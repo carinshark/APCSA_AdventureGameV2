@@ -9,7 +9,7 @@ public class Game {
         ArrayList<Room> allRooms = new ArrayList<Room>();
 
         //ITEMS ~   ~   ~   ~
-        Item map = new Item("Map", "Hope you know how to read it! - your favorite wizard statue", -1, 0, "*********\n*O-O-O***\n*****|***\n*****O-O*\n*****|*|*\n*O-O-O*O*\n*******|*\n*O*****O*\n*******|*");
+        Item map = new Item("Map", "Hope you know how to read it! - your favorite wizard statue", -1, 0, "*********\n*O-O-O***\n*|***|***\n*O***O-O*\n*|***|*|*\n*O-O-O*O*\n*******|*\n*O*****O*\n*******|*");
         Item potion = new Item("Health Potion","\"One sip is all it takes!\" Contains 2 servings.", 2,20,null);
         Item chalice = new Item("Schrodinger's Chalice", "A 50% chance of surviving you had… the other 50% is in here", 1, -1000, "Bleh :p");
         Item tomato = new Item("Tomato Rock", "It looks like a tomato... but easy to tell when you hold it", 0, 0, null);
@@ -65,14 +65,14 @@ public class Game {
 
         //ROOM 102
         String[] c102 = { "Pick up the tomato rock","Pick up the carrot rock"};
-        String[] res102 = { "It's a red rock… all of a sudden a rat runs by and steals the other one","It's an orange rock… all of a sudden a rat runs by and steals the other one."};
+        String[] res102 = { "It's a red rock... all of a sudden a rat runs by and steals the other one","It's an orange rock... all of a sudden a rat runs by and steals the other one."};
         int[] h102 = {0,0};
         Item[] rew102 = {tomato,carrot};
         boolean[] rep102 = {false,false};
         boolean[] doorOpens102 = {true,true};
         Item[] req102 = null;
         boolean[] win102 = null;
-        allRooms.add(new Room("Pantry",102,"nw", "You enter a room with minimal lighting. There appears to be food on high shelves, but they’re all painted rocks",
+        allRooms.add(new Room("Pantry",102,"nw", "You enter a room with minimal lighting. There appears to be food on high shelves, but they're all painted rocks",
         new Challenge( "2 of the rocks fall to the ground. one looks like a carrot, and the other a tomato.", c102, res102, h102, rew102, doorOpens102, rep102, req102, win102),true));
 
 
@@ -158,7 +158,7 @@ public class Game {
         boolean[] doorOpens103 = { false,false,true,true,true,true};
         Item[] req103 = {null,potion,chalice,tomato,carrot,fork};
         boolean[] win103 = null;
-        allRooms.add(new Room("Feasting Hall",103,"s","No turning back now… \nYou see someone sitting in front of you across a table.",
+        allRooms.add(new Room("Feasting Hall",103,"s","No turning back now... \nYou see someone sitting in front of you across a table.",
         new Challenge("The mysterious person tells you that they are gonna kill you after eating the feast. They proceed to ask you if you brought anything with you for them to feast on", c103, res103, h103, rew103, doorOpens103, rep103, req103, win103),false));
         
 
@@ -190,6 +190,7 @@ public class Game {
         boolean isSolving = false;
         int choiceInt;
         Challenge currentChallenge;
+        boolean gameWon = false;
 
         boolean inInventory = false;
         Item currentItem;
@@ -226,9 +227,9 @@ public class Game {
                         } else if (playerResponse.equals("s")){
                             currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()-100));
                         } else if (playerResponse.equals("e")){
-                            currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()+10));
+                            currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()+1));
                         } else if (playerResponse.equals("w")){
-                            currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()-10));
+                            currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()-1));
                         }
                         System.out.println(currentPlayer.getLocation().getDescription());
                     }
@@ -244,89 +245,103 @@ public class Game {
             }
 
             else if (playerResponse.equals("solve")) {
-                if (!currentPlayer.getLocation().getChallenge().isComplete()){
-                    System.out.println(currentPlayer.getLocation().getChallenge().getPrompt());
+                if (currentPlayer.getLocation().getChallenge()!=null){
+                    if (!currentPlayer.getLocation().getChallenge().isComplete()){
+                        System.out.println(currentPlayer.getLocation().getChallenge().getPrompt());
 
-                    
-                    isSolving = true;
-                    while (isSolving){
-                        currentChallenge = currentPlayer.getLocation().getChallenge();
-                        System.out.println("Your choices:(type \"return\" to go back to player moves)");
-                        for (int i = 0; i < currentChallenge.getChoices().length; i++) {
-                            if (((currentChallenge.getItemReq()==null)||currentChallenge.getItemReq()[i]==null) || (currentPlayer.getInventory().contains(currentChallenge.getItemReq()[i]))){
-                                System.out.println(i+": "+currentChallenge.getChoices()[i]);
+                        
+                        isSolving = true;
+                        while (isSolving){
+                            currentChallenge = currentPlayer.getLocation().getChallenge();
+                            System.out.println("Your choices:(type \"return\" to go back to player moves)");
+                            for (int i = 0; i < currentChallenge.getChoices().length; i++) {
+                                if (((currentChallenge.getItemReq()==null)||currentChallenge.getItemReq()[i]==null) || (currentPlayer.getInventory().contains(currentChallenge.getItemReq()[i]))){
+                                    System.out.println(i+": "+currentChallenge.getChoices()[i]);
+                                }
                             }
-                        }
-                        playerResponse = scan.nextLine();
-                        if (playerResponse.equals("return")) {
-                            isSolving = false;
-                        }
-                        else if (playerResponse.length()==1){
-                            choiceInt = Integer.parseInt(playerResponse);
-                            if (choiceInt>=0&&choiceInt<currentChallenge.getChoices().length){
+                            playerResponse = scan.nextLine();
+                            if (playerResponse.equals("return")) {
+                                isSolving = false;
+                            }
+                            else if (playerResponse.length()==1){
+                                choiceInt = Integer.parseInt(playerResponse);
+                                if (choiceInt>=0&&choiceInt<currentChallenge.getChoices().length){
 
-                                if (currentChallenge.getItemReq()==null||currentPlayer.getInventory().contains(currentChallenge.getItemReq()[choiceInt])){
+                                    if ((currentChallenge.getItemReq()==null)||(currentChallenge.getItemReq()[choiceInt]==null)||currentPlayer.getInventory().contains(currentChallenge.getItemReq()[choiceInt])){
 
-                                    System.out.println(currentChallenge.getResponses()[choiceInt]);
-                                    if (currentChallenge.getHealth()[choiceInt]!=0){
-                                        System.out.println(currentChallenge.getHealth()[choiceInt]+" hp");
-                                        currentPlayer.addHealth(currentChallenge.getHealth()[choiceInt]);
-                                    }
-                                    if (currentChallenge.getRewards()[choiceInt]!=null){
-                                        System.out.println("you have aquired "+currentChallenge.getRewards()[choiceInt].getName());
-                                        currentPlayer.getInventory().add(currentChallenge.getRewards()[choiceInt]);
-                                        currentChallenge.getRewards()[choiceInt].setParent(currentPlayer);
-                                    }
-                                    if (currentChallenge.getRepeatable()[choiceInt]==false){
-                                        isSolving = false;
-                                    }
-                                    if (currentChallenge.getOpenDoors()[choiceInt]==true){
-                                        currentPlayer.getLocation().openDoors();
-                                    }
-                                    if (currentChallenge.getWin()!=null){
-                                        if (currentChallenge.getWin()[choiceInt]){
-                                            System.out.println("Nice job! you won the game!");
-                                            gameRunning = false;
-                                            isSolving = false;
+                                        System.out.println(currentChallenge.getResponses()[choiceInt]);
+                                        if (currentChallenge.getHealth()[choiceInt]!=0){
+                                            System.out.println(currentChallenge.getHealth()[choiceInt]+" hp");
+                                            currentPlayer.addHealth(currentChallenge.getHealth()[choiceInt]);
                                         }
+                                        if (currentChallenge.getRewards()[choiceInt]!=null){
+                                            System.out.println("you have aquired "+currentChallenge.getRewards()[choiceInt].getName());
+                                            currentPlayer.getInventory().add(currentChallenge.getRewards()[choiceInt]);
+                                            currentChallenge.getRewards()[choiceInt].setParent(currentPlayer);
+                                        }
+                                        if (currentChallenge.getRepeatable()[choiceInt]==false){
+                                            isSolving = false;
+                                            currentChallenge.complete();
+                                        }
+                                        if (currentChallenge.getOpenDoors()[choiceInt]==true){
+                                            currentPlayer.getLocation().openDoors();
+                                        }
+                                        if (currentChallenge.getWin()!=null){
+                                            if (currentChallenge.getWin()[choiceInt]){
+                                                System.out.println("Nice job! you won the game!");
+                                                gameRunning = false;
+                                                isSolving = false;
+                                                gameWon = true;
+                                            }
+                                        }
+                                        //remove item if was a requirement
+                                        if (currentChallenge.getItemReq()!=null&&currentChallenge.getItemReq()[choiceInt]!=null){
+                                            currentPlayer.getInventory().remove(currentChallenge.getItemReq()[choiceInt]);
+                                        }
+
+
+                                    } else{
+                                        System.out.println("you don't have the item needed for this!");
                                     }
 
 
+                                    
                                 } else{
-                                    System.out.println("you don't have the item needed for this!");
+                                    System.out.println("this choice is not one of the options!");
                                 }
 
 
-                                
+
+
                             } else{
-                                System.out.println("this choice is not one of the options!");
+                                System.out.println("this is not a valid response - please pick a number!");
                             }
 
+                            if (!currentPlayer.isAlive()){
+                                isSolving = false;
+                            }
 
-
-
-                        } else{
-                            System.out.println("this is not a valid response - please pick a number!");
                         }
+
+                    }else{
+                        System.out.println("this room is already complete! try moving to a different rome with \"move\"");
                     }
-
-                    
-
-
-
-
-
-                }else{
-                    System.out.println("this room is already complete! try moving to a different rome with \"move\"");
+                } else{
+                    System.out.println("there is nothing to do in this room, try a different room!");
                 }
             }
             
             else if (playerResponse.equals("inventory")){
-                for (Item item:currentPlayer.getInventory()){
-                    System.out.println(item.getName());
+                if (currentPlayer.getInventory().size()>0){
+                    for (Item item:currentPlayer.getInventory()){
+                        System.out.println(item.getName());
+                    }
+                } else{
+                    System.out.println("your inventory is empty.");
                 }
+                inInventory = true;
                 while (inInventory){
-                    System.out.println("make your move(\"h\" for help)");
+                    System.out.println("Inventory: make your move(\"h\" for help)");
                     playerResponse = scan.nextLine();
 
                     if (playerResponse.equals("return")){
@@ -357,7 +372,9 @@ public class Game {
                         }
                     }
 
-
+                    if (!currentPlayer.isAlive()){
+                        inInventory = false;
+                    }
 
                 }
             }
@@ -368,10 +385,16 @@ public class Game {
             }
             
             
-
+            if (!currentPlayer.isAlive()){
+                gameRunning = false;
+            }
 
         }
+        if (gameWon){
+            System.out.println("YOU WON!!!! WOOOOOOO");
+        }
         System.out.println("Thank you for playing!");
+        scan.close();
 
 
     }
