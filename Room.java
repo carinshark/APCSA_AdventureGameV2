@@ -39,6 +39,10 @@ public class Room {
     public void openDoors(){
         canLeave = true;
     }
+
+    public String getDescription(){
+        return description;
+    }
     
 
 

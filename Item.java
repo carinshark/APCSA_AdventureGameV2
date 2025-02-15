@@ -30,9 +30,11 @@ public class Item {
         this.parent = parent;
     }
 
-    public boolean use(){
+    
+
+    public void use(){
         if (uses==0){
-            return false;
+            System.out.println("This item cannot be used!");
         }
         else{
             if (uses>0){
@@ -45,7 +47,6 @@ public class Item {
             
 
             System.out.println(useText);
-            return true;
         }
     }
 

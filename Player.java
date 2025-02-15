@@ -14,6 +14,15 @@ public class Player {
         
     }
 
+    public Item getItem(String name){
+        for (Item item:inventory){
+            if (item.getName().toLowerCase().equals(name.toLowerCase())){
+                return item;
+            }
+        }
+        return null;
+    }
+
 
     public boolean isAlive(){
         return (health>0);
@@ -23,6 +32,15 @@ public class Player {
     }
     public ArrayList<Item> getInventory(){
         return inventory;
+    }
+
+    public boolean hasItem(String itemName){
+        for (Item x:inventory){
+            if (x.getName().equals(itemName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Room getLocation(){
