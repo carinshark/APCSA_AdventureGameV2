@@ -30,7 +30,7 @@ public class Game {
         boolean[] doorOpens0000 = {true,false};
         Item[] req0000 = null;
         boolean[] win0000 = null;
-
+        
         allRooms.add(new Room("Tavern",0,"n",
         "You wake up in... a cardboard box in the back of the tavern? You open a door that leads outside, but before you take a step, you hear a loud chirp and stop.",
         new Challenge( "A very angry looking hummingbird wearing a cloak stands on the other side of the door. You also notice a door behind you.", c0000, res0000, h0000, rew0000, doorOpens0000, rep0000, req0000, win0000),
@@ -197,12 +197,15 @@ public class Game {
 
         
         //startRoom description
+        System.out.println("Room: "+currentPlayer.getLocation().getName());
         System.out.println(currentPlayer.getLocation().getDescription());
         
         // game loop
         while (gameRunning) {
+            System.out.println("\n");
             System.out.print("your move(type \"h\" for options): ");
             playerResponse = scan.nextLine();
+            System.out.println();
             
             if (playerResponse.equals("h")){
                 System.out.println("h - help\nend - end game loop\nmove - switch rooms\nsolve- do the room's challenge\ninventory - show and use items in inventory");
@@ -216,7 +219,10 @@ public class Game {
                     for (int i =0;i<currentPlayer.getLocation().getDoors().length();i++){
                         System.out.print(currentPlayer.getLocation().getDoors().substring(i,i+1));
                         if (i!=currentPlayer.getLocation().getDoors().length()-1) {
-                            System.err.println(",");
+                            System.out.print(",");
+                        }
+                        else{
+                            System.out.println();
                         }
 
                     }
@@ -231,6 +237,7 @@ public class Game {
                         } else if (playerResponse.equals("w")){
                             currentPlayer.setLocation(getRoom(allRooms, currentPlayer.getLocation().getId()-1));
                         }
+                        System.out.println("Room: "+currentPlayer.getLocation().getName());
                         System.out.println(currentPlayer.getLocation().getDescription());
                     }
                     else{
@@ -275,7 +282,7 @@ public class Game {
                                             currentPlayer.addHealth(currentChallenge.getHealth()[choiceInt]);
                                         }
                                         if (currentChallenge.getRewards()[choiceInt]!=null){
-                                            System.out.println("you have aquired "+currentChallenge.getRewards()[choiceInt].getName());
+                                            System.out.println("you have acquired "+currentChallenge.getRewards()[choiceInt].getName());
                                             currentPlayer.getInventory().add(currentChallenge.getRewards()[choiceInt]);
                                             currentChallenge.getRewards()[choiceInt].setParent(currentPlayer);
                                         }

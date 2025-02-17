@@ -5,6 +5,7 @@ public class Item {
     private int uses;
     private int useHealth;
     private String useText;
+    
 
     public Item(String name,String text,int uses,int useHealth,String useText){
         this.name = name;
