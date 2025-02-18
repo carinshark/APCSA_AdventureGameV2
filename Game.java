@@ -182,16 +182,17 @@ public class Game {
 
         Scanner scan = new Scanner(System.in);
         boolean gameRunning = true;
-
+        //player creation
         System.out.println("what is your name?");
         Player currentPlayer = new Player(scan.nextLine(),getRoom(allRooms, 0));
         
+
         String playerResponse = "";
         boolean isSolving = false;
         int choiceInt;
         Challenge currentChallenge;
         boolean gameWon = false;
-
+        
         boolean inInventory = false;
         Item currentItem;
 
@@ -206,13 +207,15 @@ public class Game {
             System.out.print("your move(type \"h\" for options): ");
             playerResponse = scan.nextLine();
             System.out.println();
-            
+            //choice options
             if (playerResponse.equals("h")){
                 System.out.println("h - help\nend - end game loop\nmove - switch rooms\nsolve- do the room's challenge\ninventory - show and use items in inventory");
             }
+            //end game
             else if (playerResponse.equals("end")){
                 gameRunning = false;
             }
+            //move to different room(if allowed)
             else if (playerResponse.equals("move")){
                 if (currentPlayer.getLocation().canLeave()){
                     System.out.print("pick a direction:");
@@ -250,7 +253,7 @@ public class Game {
                 
 
             }
-
+            //solve puzzle(list choices, pick index of choice, and determine outputs)
             else if (playerResponse.equals("solve")) {
                 if (currentPlayer.getLocation().getChallenge()!=null){
                     if (!currentPlayer.getLocation().getChallenge().isComplete()){
@@ -338,6 +341,8 @@ public class Game {
                 }
             }
             
+
+            // inventory - shows item name, description, and option to use if able to
             else if (playerResponse.equals("inventory")){
                 if (currentPlayer.getInventory().size()>0){
                     for (Item item:currentPlayer.getInventory()){
@@ -386,7 +391,7 @@ public class Game {
                 }
             }
             
-            
+            //false
             else{
                 System.out.println("I dont know what that is.");
             }
