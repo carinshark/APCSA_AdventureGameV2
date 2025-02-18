@@ -5,7 +5,7 @@ public class Item {
     private int uses;
     private int useHealth;
     private String useText;
-    
+    private int amount;
 
     public Item(String name,String text,int uses,int useHealth,String useText){
         this.name = name;
@@ -13,6 +13,17 @@ public class Item {
         this.uses = uses;
         this.useHealth = useHealth;
         this.useText = useText;
+        this.amount = 1;
+
+
+    }
+    public Item(String name,String text,int uses,int useHealth,String useText,int amount){
+        this.name = name;
+        this.text = text;
+        this.uses = uses;
+        this.useHealth = useHealth;
+        this.useText = useText;
+        this.amount = amount;
 
 
     }
