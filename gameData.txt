@@ -1,4 +1,30 @@
+items{
+    
+}
 
-level:levelName{
-  
-};
+gameplay{
+
+    level:levelName{
+        challenge:new challengeID{
+            prompt:;
+            choices:{};
+            responses:{};
+            health:{};
+            reward:{};
+            openDoors:{};
+            repeatable:{};
+            itemReq:{};
+            win:{};
+        }
+        room:new roomNameID{
+            name:;
+            doors:;
+            description:;
+            challenge:;
+            canLeave:;
+        }
+    };
+
+}
+
+
