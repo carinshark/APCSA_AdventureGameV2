@@ -1,4 +1,16 @@
+
+import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.util.Scanner;
+
 public class Item {
+
+    //all items in game
+    private static ArrayList<Item> items = new ArrayList<Item>();
+
+
+
     private String name;
     private Player parent;
     private String text;
@@ -61,6 +73,25 @@ public class Item {
             if (useText!= null){
                 System.out.println(useText);
             }
+        }
+    }
+
+    public static void writeRooms(String str){
+        try {
+            File gameData = new File("GameItems.txt");
+            Scanner fileReader = new Scanner(gameData);
+            int braceDelimiter = 0;
+            int quotationDelimiter = 0;
+            String currentThing;
+            while (fileReader.hasNextLine()) { 
+                System.out.println(fileReader.nextLine());
+                
+            }
+            fileReader.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("GAME DATA MISSING!!!!!!!!!(Gameitems.txt)");
+            e.printStackTrace();
         }
     }
 

@@ -1,0 +1,20 @@
+items{
+{
+name:"Map";
+text:"Hope you know how to read it! - your favorite wizard statue"
+damage:0
+uses:-1
+useHealth:0
+useText:
+"*********
+*O-O-O***
+*|***|***
+*O***O-O*
+*|***|*|*
+*O-O-O*O*
+*******|*
+*O*****O*
+*******|*"
+}
+
+}

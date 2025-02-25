@@ -1,18 +1,29 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 
 public class RoomWriter{
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        String roomValue = scan.nextLine();
         
-        
-        System.out.println(
-            "//ROOM "+roomValue+"\nString[] c"+roomValue+" = {};\nString[] res"+roomValue+" = {};\nint[] h"+roomValue+" = {};\nItem[] rew"+roomValue+" = {};\nboolean[] rep"+roomValue+" = {};\nboolean[] doorOpens"+roomValue+" = {};\nItem[] req"+roomValue+" = null;\nboolean[] win"+roomValue+" = null;\nallRooms.add(new Room(NAME,"+roomValue+",DOORS,DESCRIPTION,\nnew Challenge( PROMPT, c"+roomValue+", res"+roomValue+", h"+roomValue+", rew"+roomValue+", doorOpens"+roomValue+", rep"+roomValue+", req"+roomValue+", win"+roomValue+"),LEAVE));"
-        );
 
+        //read inventory file, add to Item class static variable to store for future refrence
+        try {
+            File gameData = new File("GameItems.txt");
+            Scanner fileReader = new Scanner(gameData);
+            int braceDelimiter = 0;
+            int quotationDelimiter = 0;
+            while (fileReader.hasNextLine()) { 
+                System.out.println(fileReader.nextLine());
+                
+            }
 
-        scan.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("GAME DATA MISSING!!!!!!!!!");
+            e.printStackTrace();
+        }
 
 
 
