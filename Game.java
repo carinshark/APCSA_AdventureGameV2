@@ -9,14 +9,14 @@ public class Game {
         ArrayList<Room> allRooms = new ArrayList<Room>();
 
         //ITEMS ~   ~   ~   ~
-        Item map = new Item("Map", "Hope you know how to read it! - your favorite wizard statue", -1, 0, "*********\n*O-O-O***\n*|***|***\n*O***O-O*\n*|***|*|*\n*O-O-O*O*\n*******|*\n*O*****O*\n*******|*");
-        Item potion = new Item("Health Potion","\"One sip is all it takes!\" Contains 2 servings.", 2,20,null);
-        Item chalice = new Item("Schrodinger's Chalice", "A 50% chance of surviving you had… the other 50% is in here", 1, -1000, "Bleh :p");
-        Item tomato = new Item("Tomato Rock", "It looks like a tomato... but easy to tell when you hold it", 0, 0, null);
-        Item carrot = new Item("Carrot Rock", "It looks like a carrot... Hard to tell apart", 0, 0, null);
-        Item hammer = new Item("Blacksmith's hammer", "The free trial version! Use in a forge", 0, 0, null);
-        Item shield = new Item("Shield", "When the time's right, deflect any attack", -1, 0, "There's nothing to block...");
-        Item fork = new Item("Fork", "Yum yum", -1, 0, "You put the fork in your mouth. You enjoy the delicious oxygen you just ate.");
+        Item map = new Item("Map","map", "Hope you know how to read it! - your favorite wizard statue", -1, 0, "*********\n*O-O-O***\n*|***|***\n*O***O-O*\n*|***|*|*\n*O-O-O*O*\n*******|*\n*O*****O*\n*******|*");
+        Item potion = new Item("Health Potion","health_potion","\"One sip is all it takes!\" Contains 2 servings.", 2,20,null);
+        Item chalice = new Item("Schrodinger's Chalice","s_chalice", "A 50% chance of surviving you had… the other 50% is in here", 1, -1000, "Bleh :p");
+        Item tomato = new Item("Tomato Rock","tomato_rock", "It looks like a tomato... but easy to tell when you hold it", 0, 0, null);
+        Item carrot = new Item("Carrot Rock","carrot_rock", "It looks like a carrot... Hard to tell apart", 0, 0, null);
+        Item hammer = new Item("Blacksmith's hammer","trial_hammer", "The free trial version! Use in a forge", 0, 0, null);
+        Item shield = new Item("Shield","shield", "When the time's right, deflect any attack", -1, 0, "There's nothing to block...");
+        Item fork = new Item("Fork","fork", "Yum yum", -1, 0, "You put the fork in your mouth. You enjoy the delicious oxygen you just ate.");
 
 
         //ROOMS ~   ~   ~   ~

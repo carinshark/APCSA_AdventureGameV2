@@ -12,6 +12,7 @@ public class Item {
 
 
     private String name;
+    private String id;
     private Player parent;
     private String text;
     private int uses;
@@ -19,40 +20,56 @@ public class Item {
     private String useText;
     private int amount;
 
-    public Item(String name,String text,int uses,int useHealth,String useText){
+    public Item(String name,String id,String text,int uses,int useHealth,String useText){
         this.name = name;
+        this.id = id;
         this.text = text;
         this.uses = uses;
         this.useHealth = useHealth;
         this.useText = useText;
         this.amount = 1;
 
-
     }
-    public Item(String name,String text,int uses,int useHealth,String useText,int amount){
+
+    public Item(String name,String id,String text,int uses,int useHealth,String useText,int amount){
         this.name = name;
+        this.id = id;
         this.text = text;
         this.uses = uses;
         this.useHealth = useHealth;
         this.useText = useText;
         this.amount = amount;
 
-
+    }
+    public Item(Item i){
+        this.name = i.getName();
+        this.id = i.getId();
+        this.text = i.getText();
+        this.uses = i.getUses();
+        this.useHealth = i.getUseHealth();
+        this.useText = i.useText;
+        this.amount = i.amount;
     }
 
-    public String getName(){
-        return name;
-    }
-    public String getText(){
-        return text;
-    }
-    public int getUses(){
-        return uses;
-    }
+    //getters
+    public String getName()
+    {return name;}
+    public String getId()
+    {return id;}
+    public String getText()
+    {return text;}
+    public int getUses()
+    {return uses;}
+    public int getUseHealth()
+    {return useHealth;}
+    public String getUseText()
+    {return useText;}
+    public String getAmount()
+    {return amount;}
 
-    public void setParent(Player parent){
-        this.parent = parent;
-    }
+    // setters
+    public void setParent(Player parent)
+    {this.parent = parent;}
 
     
 
@@ -76,7 +93,15 @@ public class Item {
         }
     }
 
-    public static void writeRooms(String str){
+    public static Item createItem(String itemId){
+        for (Item i:items){
+            if item.getId.equals(itemID){
+                return new Item(i);
+            }
+        }
+    }
+
+    public static void readItems(){
         try {
             File gameData = new File("GameItems.txt");
             Scanner fileReader = new Scanner(gameData);
