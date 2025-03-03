@@ -9,11 +9,11 @@ public class Challenge {
     private Item[] reward;
     private boolean[] openDoors;
     private boolean[] repeatable;
-    private Item[] itemReq;
+    private String[] itemReq;
     private boolean[] win;
 
 
-    public Challenge(String prompt,String[] choices,String[] responses,int[] health,Item[] reward,boolean[] openDoors,boolean[] repeatable,Item[] itemReq,boolean[] win){
+    public Challenge(String prompt,String[] choices,String[] responses,int[] health,Item[] reward,boolean[] openDoors,boolean[] repeatable,String[] itemReq,boolean[] win){
         this.prompt = prompt;
         this.choices = choices;
         this.responses = responses;
@@ -47,7 +47,7 @@ public class Challenge {
     public boolean[] getRepeatable(){
         return repeatable;
     }
-    public Item[] getItemReq(){
+    public String[] getItemReq(){
         return itemReq;
     }
     public boolean[] getWin(){
