@@ -1,26 +1,159 @@
-gameplay{
-
-    level:levelName{
-        challenge:new challengeID{
-            prompt:;
-            choices:{};
-            responses:{};
-            health:{};
-            reward:{};
-            openDoors:{};
-            repeatable:{};
-            itemReq:{};
-            win:{};
-        }
-        room:new roomNameID{
-            name:;
-            doors:;
-            description:;
-            challenge:;
-            canLeave:;
-        }
-    };
-
+{
+name:Tavern
+doors:n
+description:You wake up in… a cardboard box in the back of the tavern? You open a door that leads outside, but before you take a step, you hear a loud chirp and stop.
+canLeave:false
+prompt:A very angry looking hummingbird wearing a cloak stands on the other side of the door. You also notice a door behind you.
+choices:[Go into the door,Approach the bird]
+responses:[You walk into a dark room. All of a sudden the ground slides open and you fall onto a slide which brings you into a room underground, and the way you came in closes. It looks like this room also closes as soon as you step out.,The hummingbird pecks at you! You get knocked back to the door]
+health:[0,-10]
+reward:[null,null]
+repeatable:[false,true]
+doorOpens:[true,false]
 }
+{
+name:Guardian
+doors:ne
+description:There is a stone statue of a wizard in front of you.
+canLeave:false
+prompt:The wizard comes to life! It says: I AM THE GUARDIAN OF THIS HERE DUNGEON!! WHAT IS YOUR PURPOSE FOR BEING HERE
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+{
+name:
+doors:
+description:
+canLeave:
+prompt:
+choices:
+responses:
+health:
+reward:
+repeatable:
+doorOpens:
+}
+
 
 

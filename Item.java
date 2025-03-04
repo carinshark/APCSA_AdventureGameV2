@@ -3,9 +3,6 @@ import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.Scanner;
-import javax.naming.InitialContext;
-import javax.print.attribute.standard.Sides;
-
 public class Item {
 
     //all items in game
@@ -139,6 +136,10 @@ public class Item {
                             allAccounted=false;
                         }
                     }
+                    if (itemData[5].equals("null")){
+                        itemData[5] = null;
+                    }
+                    
                     if (allAccounted){
                         if (itemData[6]==null){
                             items.add(new Item(
@@ -200,10 +201,10 @@ public class Item {
                 
             }
             
-            //FOR TESTING PURPOSES
-            // for(Item i:items){
-            //     i.printInfo();
-            // }
+            // FOR TESTING PURPOSES
+            for(Item i:items){
+                i.printInfo();
+            }
             fileReader.close();
 
         } catch (FileNotFoundException e) {

@@ -14,7 +14,51 @@ uses:2
 useHealth:20
 useText:null
 }
-
-
-
-
+{
+name:Schrodinger's Chalice
+id:quantum_chalice
+text:A 50% chance of surviving you had… the other 50% is in here
+uses:1
+useHealth:-1000
+useText:Bleh :p
+}
+{
+name:Tomato Rock
+id:tomato_rock
+text:It looks like a tomato… but easy to tell when you hold it
+uses:0
+useHealth:0
+useText:null
+}
+{
+name:Carrot Rock
+id:carrot_rock
+text:It looks like a carrot... Hard to tell apart
+uses:0
+useHealth:0
+useText:null
+}
+{
+name:Blacksmith's hammer
+id:trial_hammer
+text:0
+uses:0
+useHealth:0
+useText:0
+}
+{
+name:Shield
+id:shield
+text:When the time is right, deflect any attack
+uses:-1
+useHealth:0
+useText:There's nothing to block...
+}
+{
+name:Fork
+id:fork
+text:Yum yum
+uses:-1
+useHealth:0
+useText:You put the fork in your mouth. You enjoy the delicious oxygen you just ate
+}
