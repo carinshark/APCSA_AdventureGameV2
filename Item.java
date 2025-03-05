@@ -208,7 +208,7 @@ public class Item {
             fileReader.close();
 
         } catch (FileNotFoundException e) {
-            System.out.println("GAME DATA MISSING!!!!!!!!!(Gameitems.txt)");
+            System.out.println("GAME DATA MISSING!!!!!!!!!(GameItems.txt)");
             e.printStackTrace();
         }
     }

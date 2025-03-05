@@ -179,7 +179,7 @@ public class Game {
         System.out.println("what is your name?");
         Player currentPlayer = new Player(scan.nextLine(),getRoom(allRooms, 0));
         
-
+        
         String playerResponse = "";
         boolean isSolving = false;
         int choiceInt;
