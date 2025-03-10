@@ -6,14 +6,14 @@ public class Challenge {
     private String[] choices;
     private String[] responses;
     private int[] health;
-    private Item[] reward;
+    private String[] reward;
     private boolean[] openDoors;
     private boolean[] repeatable;
     private String[] itemReq;
     private boolean[] win;
 
 
-    public Challenge(String prompt,String[] choices,String[] responses,int[] health,Item[] reward,boolean[] openDoors,boolean[] repeatable,String[] itemReq,boolean[] win){
+    public Challenge(String prompt,String[] choices,String[] responses,int[] health,String[] reward,boolean[] openDoors,boolean[] repeatable,String[] itemReq,boolean[] win){
         this.prompt = prompt;
         this.choices = choices;
         this.responses = responses;
@@ -24,6 +24,23 @@ public class Challenge {
         this.itemReq = itemReq;
         this.win = win;
         
+    }
+
+    public String toString(){
+        String output = "";
+        output+="isComplete:"+isComplete+"\n";
+        output+="prompt:"+prompt+"\n";
+        output+="choice:"+choices+"\n";
+        output+="responses:"+responses+"\n";
+        output+="health:"+health+"\n";
+        output+="reward:"+reward+"\n";
+        output+="openDoors:"+openDoors+"\n";
+        output+="repeatable:"+repeatable+"\n";
+        output+="itemReq:"+itemReq+"\n";
+        output+="win:"+win+"\n";
+
+
+        return output;
     }
 
     public String getPrompt(){
@@ -38,7 +55,7 @@ public class Challenge {
     public int[] getHealth(){
         return health;
     }
-    public Item[] getRewards(){
+    public String[] getRewards(){
         return reward;
     }
     public boolean[] getOpenDoors(){
