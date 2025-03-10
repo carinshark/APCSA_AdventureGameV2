@@ -95,6 +95,11 @@ public class Room {
                         if (roomData[i]==null){
                             allAccounted=false;
                         }
+                        else if(roomData[i].contains("\\n")){
+                            while (roomData[i].contains("\\n")) {
+                                roomData[i] = roomData[i].substring(0,roomData[i].indexOf("\\n"))+"\n"+roomData[i].substring(roomData[i].indexOf("\\n")+2);
+                            }
+                        }
                     }
                     
                     
