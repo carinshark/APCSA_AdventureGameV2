@@ -198,22 +198,23 @@ public class Room {
         }
         
         String arrayString = str.substring(0);
-        int commaCounter = 0;
-            while (arrayString.indexOf(",")>=0) {
-                commaCounter++;
-                arrayString = arrayString.substring(arrayString.indexOf(",")+1);
+        int seperatorCounter = 0;
+        String seperator = ";";
+            while (arrayString.indexOf(seperator)>=0) {
+                seperatorCounter++;
+                arrayString = arrayString.substring(arrayString.indexOf(seperator)+1);
 
             }
         
         
-        String[] formedArray = new String[commaCounter];
+        String[] formedArray = new String[seperatorCounter];
 
-        arrayString = str.substring(str.indexOf("[")+1,str.indexOf("]"));
+        arrayString = str.substring(str.indexOf(seperator)+1,str.indexOf(seperator));
 
         for (int i=0;i<formedArray.length;i++){
-            if (arrayString.contains(",")){
-                formedArray[i] = arrayString.substring(0,arrayString.indexOf(","));
-                arrayString = arrayString.substring(arrayString.indexOf(",")+1);
+            if (arrayString.contains(seperator)){
+                formedArray[i] = arrayString.substring(0,arrayString.indexOf(seperator));
+                arrayString = arrayString.substring(arrayString.indexOf(seperator)+1);
             }
             else{
                 formedArray[i] = arrayString;
