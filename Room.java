@@ -27,12 +27,12 @@ public class Room {
 
     public String toString(){
         String output = "";    
-        output+=name+"\n";
-        output+=id+"\n";
-        output+=doors+"\n";
-        output+=description+"\n";
+        output+="name:"+name+"\n";
+        output+="id:"+id+"\n";
+        output+="doors:"+doors+"\n";
+        output+="description:"+description+"\n";
         output+=challenge.toString()+"\n";
-        output+=canLeave;
+        output+="canLeave:"+canLeave;
 
 
         return output;
@@ -95,6 +95,9 @@ public class Room {
                         if (roomData[i]==null){
                             allAccounted=false;
                         }
+                        else if (roomData[i].equals("null")){
+                            roomData[i] = null;
+                        }
                         else if(roomData[i].contains("\\n")){
                             while (roomData[i].contains("\\n")) {
                                 roomData[i] = roomData[i].substring(0,roomData[i].indexOf("\\n"))+"\n"+roomData[i].substring(roomData[i].indexOf("\\n")+2);
@@ -149,9 +152,9 @@ public class Room {
             }
             
             //TESTING
-            // System.out.println("a");
-            // for (Room room:rooms) System.out.println(room.toString());
-            // System.out.println("b");
+            System.out.println("a");
+            for (Room room:rooms) System.out.println(room.toString());
+            System.out.println("b");
 
 
             fileReader.close();
@@ -200,6 +203,8 @@ public class Room {
         String arrayString = str.substring(0);
         int seperatorCounter = 0;
         String seperator = ";";
+
+        //count seperators
             while (arrayString.indexOf(seperator)>=0) {
                 seperatorCounter++;
                 arrayString = arrayString.substring(arrayString.indexOf(seperator)+1);
@@ -208,8 +213,8 @@ public class Room {
         
         
         String[] formedArray = new String[seperatorCounter];
-
-        arrayString = str.substring(str.indexOf(seperator)+1,str.indexOf(seperator));
+        System.out.println(str);
+        // arrayString = str.substring(str.indexOf(seperator)+1,str.indexOf(seperator));
 
         for (int i=0;i<formedArray.length;i++){
             if (arrayString.contains(seperator)){
@@ -226,6 +231,9 @@ public class Room {
         return formedArray;
 
 
+    }
+    public static void main(String[] args) {
+        Room.writeRooms();
     }
 
 
