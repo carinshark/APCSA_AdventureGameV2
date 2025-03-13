@@ -6,14 +6,14 @@ public class Game {
 
 
     public static void main(String[] args) {
-        ArrayList<Room> allRooms = new ArrayList<Room>();
+        ArrayList<Room> allRooms = Room.getRooms();
 
         //read item file ~   ~   ~   ~
         Item.readItems();
 
 
-        // //ROOMS ~   ~   ~   ~
-        
+        // read rooms ~   ~   ~   ~
+        Room.readRooms();
         // // ROOM 0000
         // String[] c0000 = {"Go into the door","Approach the bird"};
         // String[] res0000 = {"You walk into a dark room. All of a sudden the ground slides open and you fall onto a slide which brings you into a room underground, and the way you came in closes. It looks like this room also closes as soon as you step out.","The hummingbird pecks at you! You get knocked back to the door"};
@@ -258,7 +258,8 @@ public class Game {
                             currentChallenge = currentPlayer.getLocation().getChallenge();
                             System.out.println("Your choices:(type \"return\" to go back to player moves)");
                             for (int i = 0; i < currentChallenge.getChoices().length; i++) {
-                                if (((currentChallenge.getItemReq()==null)||currentChallenge.getItemReq()[i]==null) || (currentPlayer.getInventory().contains(currentChallenge.getItemReq()[i]))){
+                                //checks if there is an item requirement --> checks if player has item
+                                if (((currentChallenge.getItemReq()==null)||currentChallenge.getItemReq()[i]==null) || (currentPlayer.hasItem(currentChallenge.getItemReq()[i]))){
                                     System.out.println(i+": "+currentChallenge.getChoices()[i]);
                                 }
                             }
@@ -270,7 +271,7 @@ public class Game {
                                 choiceInt = Integer.parseInt(playerResponse);
                                 if (choiceInt>=0&&choiceInt<currentChallenge.getChoices().length){
 
-                                    if ((currentChallenge.getItemReq()==null)||(currentChallenge.getItemReq()[choiceInt]==null)||currentPlayer.getInventory().contains(currentChallenge.getItemReq()[choiceInt])){
+                                    if ((currentChallenge.getItemReq()==null)||(currentChallenge.getItemReq()[choiceInt]==null)||currentPlayer.hasItem(currentChallenge.getItemReq()[choiceInt])){
 
                                         System.out.println(currentChallenge.getResponses()[choiceInt]);
                                         if (currentChallenge.getHealth()[choiceInt]!=0){
@@ -278,9 +279,9 @@ public class Game {
                                             currentPlayer.addHealth(currentChallenge.getHealth()[choiceInt]);
                                         }
                                         if (currentChallenge.getRewards()[choiceInt]!=null){
-                                            System.out.println("you have acquired "+currentChallenge.getRewards()[choiceInt].getName());
-                                            currentPlayer.getInventory().add(currentChallenge.getRewards()[choiceInt]);
-                                            currentChallenge.getRewards()[choiceInt].setParent(currentPlayer);
+                                            System.out.println("you have acquired "+Item.getName(currentChallenge.getRewards()[choiceInt]));
+                                            currentPlayer.getInventory().add(Item.createItem(currentChallenge.getRewards()[choiceInt]));
+                                            currentPlayer.getInventory().getLast().setParent(currentPlayer);
                                         }
                                         if (currentChallenge.getRepeatable()[choiceInt]==false){
                                             isSolving = false;
@@ -299,7 +300,7 @@ public class Game {
                                         }
                                         //remove item if was a requirement
                                         if (currentChallenge.getItemReq()!=null&&currentChallenge.getItemReq()[choiceInt]!=null){
-                                            currentPlayer.getInventory().remove(currentChallenge.getItemReq()[choiceInt]);
+                                            currentPlayer.removeItem(currentChallenge.getItemReq()[choiceInt]);
                                         }
 
 

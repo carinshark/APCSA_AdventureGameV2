@@ -34,14 +34,34 @@ public class Player {
         return inventory;
     }
 
-    public boolean hasItem(String itemName){
-        for (Item x:inventory){
-            if (x.getName().equals(itemName)){
+    public boolean hasItem(String id){
+        for (Item i:inventory){
+            if (i.getId().equals(id)){
                 return true;
             }
         }
         return false;
     }
+
+    public void removeItem(String id){
+        for (int i=0;i<inventory.size();i++){
+            if (inventory.get(i).getId().equals(id)){
+                inventory.remove(i);
+                break;
+            }
+        }
+        System.err.println("ITEM TO REMOVE NOT FOUND:"+id);
+    }
+
+    //NO LONGER NEEDED
+    // public boolean hasItem(String itemName){
+    //     for (Item x:inventory){
+    //         if (x.getName().equals(itemName)){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
     public Room getLocation(){
         return location;

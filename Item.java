@@ -66,6 +66,19 @@ public class Item {
     public int getAmount()
     {return amount;}
 
+    public static String getName(String id){
+        for (Item i:items){
+            if (i.getId().equals(id)){
+                return i.getName();
+            }
+        }
+        return "NAME NOT FOUND FOR "+id;
+    }
+
+    
+
+
+
     // setters
     public void setParent(Player parent)
     {this.parent = parent;}
@@ -202,9 +215,9 @@ public class Item {
             }
             
             // FOR TESTING PURPOSES
-            for(Item i:items){
-                i.printInfo();
-            }
+            // for(Item i:items){
+            //     i.printInfo();
+            // }
             fileReader.close();
 
         } catch (FileNotFoundException e) {

@@ -39,6 +39,9 @@ public class Room {
     }
 
 
+    public static ArrayList<Room> getRooms(){
+        return rooms;
+    }
 
     public String getDoors(){
         return doors;
@@ -66,7 +69,9 @@ public class Room {
         return description;
     }
     
-    public static void writeRooms(){
+
+    
+    public static void readRooms(){
         try {
             File gameData = new File("GameRooms.txt");
             Scanner fileReader = new Scanner(gameData);
@@ -105,7 +110,7 @@ public class Room {
                         }
                     }
                     
-                    
+                    //create and add room if things are there
                     if (allAccounted){
                         rooms.add(new Room(
                             roomData[0],
@@ -152,9 +157,9 @@ public class Room {
             }
             
             //TESTING
-            System.out.println("a");
-            for (Room room:rooms) System.out.println(room.toString());
-            System.out.println("b");
+            // System.out.println("a");
+            // for (Room room:rooms) System.out.println(room.toString());
+            // System.out.println("b");
 
 
             fileReader.close();
@@ -213,7 +218,7 @@ public class Room {
         
         
         String[] formedArray = new String[seperatorCounter];
-        System.out.println(str);
+        // System.out.println(str);
         // arrayString = str.substring(str.indexOf(seperator)+1,str.indexOf(seperator));
 
         for (int i=0;i<formedArray.length;i++){
@@ -232,9 +237,7 @@ public class Room {
 
 
     }
-    public static void main(String[] args) {
-        Room.writeRooms();
-    }
+    
 
 
 }
