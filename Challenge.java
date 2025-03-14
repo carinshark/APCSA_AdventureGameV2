@@ -30,14 +30,14 @@ public class Challenge {
         String output = "";
         output+="isComplete:"+isComplete+"\n";
         output+="prompt:"+prompt+"\n";
-        output+="choice:"+choices+"\n";
-        output+="responses:"+responses+"\n";
-        output+="health:"+health+"\n";
-        output+="reward:"+reward+"\n";
-        output+="openDoors:"+openDoors+"\n";
-        output+="repeatable:"+repeatable+"\n";
-        output+="itemReq:"+itemReq+"\n";
-        output+="win:"+win+"\n";
+        output+="choice:"+getArrayString(choices)+"\n";
+        output+="responses:"+getArrayString(responses)+"\n";
+        output+="health:"+getArrayString(health)+"\n";
+        output+="reward:"+getArrayString(reward)+"\n";
+        output+="openDoors:"+getArrayString(openDoors)+"\n";
+        output+="repeatable:"+getArrayString(repeatable)+"\n";
+        output+="itemReq:"+getArrayString(itemReq)+"\n";
+        output+="win:"+getArrayString(win)+"\n";
 
 
         return output;
@@ -75,6 +75,60 @@ public class Challenge {
     }
     public void complete(){
         isComplete = true;
+    }
+
+    public static String getArrayString(String[] arrayStrings){
+        if (arrayStrings==null){
+            return "null(real)"+",";
+        }
+        String outpuString = "";
+        outpuString+= "[";
+
+        for (String str:arrayStrings){
+            if (str==null){
+            outpuString+= "null(real)"+",";
+        } else{
+            outpuString+= str+",";
+        }
+        }
+        outpuString = outpuString.substring(0,outpuString.length()-1);
+
+
+        outpuString += "]";
+
+        return outpuString;
+    }
+
+    public static String getArrayString(int[] arrayStrings){
+        if (arrayStrings==null){
+            return null;
+        }
+        String outpuString = "";
+        outpuString+= "[";
+        for (int str:arrayStrings){
+            outpuString+= str+",";
+        }
+        outpuString = outpuString.substring(0,outpuString.length()-1);
+
+        outpuString += "]";
+
+        return outpuString;
+    }
+
+    public static String getArrayString(boolean [] arrayStrings){
+        if (arrayStrings==null){
+            return null;
+        }
+        String outpuString = "";
+        outpuString+= "[";
+        for (boolean str:arrayStrings){
+            outpuString+= str+",";
+        }
+        outpuString = outpuString.substring(0,outpuString.length()-1);
+
+        outpuString += "]";
+
+        return outpuString;
     }
 
 

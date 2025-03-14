@@ -31,7 +31,7 @@ public class Room {
         output+="id:"+id+"\n";
         output+="doors:"+doors+"\n";
         output+="description:"+description+"\n";
-        output+=challenge.toString()+"\n";
+        output+=challenge!=null?challenge.toString():null+"\n";
         output+="canLeave:"+canLeave;
 
 
@@ -79,7 +79,7 @@ public class Room {
             boolean inRoom = false;
             
             
-            String[] identifiers = {"name","id","doors","description","canLeave","prompt","choices","responses","health","reward","repeatable","doorOpens","itemReq","win"};
+            String[] identifiers = {"name","id","doors","description","canLeave","prompt","choices","responses","health","reward","doorOpens","repeatable","itemReq","win"};
             
 
             String[] roomData = new String[identifiers.length];
@@ -96,28 +96,40 @@ public class Room {
                 else if(currentLine.equals("}")&&inRoom){
                     inRoom = false;
                     boolean allAccounted = true;
-                    for (int i=0;i<10;i++){
-                        if (roomData[i]==null){
+                    for (int i=0;i<roomData.length;i++){
+                        if (roomData[i]==null&&i<10){
                             allAccounted=false;
                         }
-                        else if (roomData[i].equals("null")){
+                        else if (roomData[i]!= null &&roomData[i].equals("null")){
                             roomData[i] = null;
                         }
-                        else if(roomData[i].contains("\\n")){
+                        else if(roomData[i]!=null&& roomData[i].contains("\\n")){
                             while (roomData[i].contains("\\n")) {
                                 roomData[i] = roomData[i].substring(0,roomData[i].indexOf("\\n"))+"\n"+roomData[i].substring(roomData[i].indexOf("\\n")+2);
                             }
                         }
+                        
                     }
                     
                     //create and add room if things are there
                     if (allAccounted){
+                        if (roomData[5]==null){
+                            rooms.add(new Room(
+                            roomData[0],
+                            Integer.parseInt(roomData[1]),
+                            roomData[2],
+                            roomData[3],
+                            getBoolean(roomData[4]),
+                            null
+                            )
+                        );
+                        }
                         rooms.add(new Room(
                             roomData[0],
                             Integer.parseInt(roomData[1]),
                             roomData[2],
                             roomData[3],
-                            Boolean.getBoolean(roomData[4]),
+                            getBoolean(roomData[4]),
                             new Challenge(
                                 roomData[5],
                                 readArray(roomData[6]),
@@ -156,7 +168,7 @@ public class Room {
                 
             }
             
-            //TESTING
+            // //TESTING
             // System.out.println("a");
             // for (Room room:rooms) System.out.println(room.toString());
             // System.out.println("b");
@@ -193,10 +205,17 @@ public class Room {
 
         boolean[] nums = new boolean[strs.length];
         for (int i=0;i<strs.length;i++){
-            nums[i] = Boolean.getBoolean(strs[i]);
+            nums[i] = getBoolean(strs[i]);
         }
 
         return nums;
+    }
+
+    public static boolean getBoolean(String str){
+        if (str.toLowerCase().equals("true")){
+                return true;
+        }
+        return false;
     }
 
     public static String[] readArray(String str){
@@ -205,33 +224,38 @@ public class Room {
             return null;
         }
         
-        String arrayString = str.substring(0);
-        int seperatorCounter = 0;
+        String arrayString = str;
         String seperator = ";";
 
-        //count seperators
-            while (arrayString.indexOf(seperator)>=0) {
-                seperatorCounter++;
-                arrayString = arrayString.substring(arrayString.indexOf(seperator)+1);
+        ArrayList<String> formedArrayList = new ArrayList<>();
 
-            }
-        
-        
-        String[] formedArray = new String[seperatorCounter];
-        // System.out.println(str);
-        // arrayString = str.substring(str.indexOf(seperator)+1,str.indexOf(seperator));
+        while (arrayString.contains(seperator)) { 
+            //adds to arrayList: if "null", adds null instead
+            formedArrayList.add(
+                arrayString.substring(0,arrayString.indexOf(seperator)));
+            arrayString = arrayString.substring(arrayString.indexOf(seperator)+1);
+        }
 
+        formedArrayList.add(arrayString);
+
+        
+
+
+
+
+        //convert to array
+        String[] formedArray = new String[formedArrayList.size()];
         for (int i=0;i<formedArray.length;i++){
-            if (arrayString.contains(seperator)){
-                formedArray[i] = arrayString.substring(0,arrayString.indexOf(seperator));
-                arrayString = arrayString.substring(arrayString.indexOf(seperator)+1);
+            if (!formedArrayList.get(i).equals("null")){
+                formedArray[i] = formedArrayList.get(i);
             }
             else{
-                formedArray[i] = arrayString;
+                formedArray[i] = null;
             }
-
-
+            
         }
+
+
         
         return formedArray;
 

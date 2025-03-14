@@ -18,7 +18,7 @@ id:100
 doors:ne
 description:There is a stone statue of a wizard in front of you.
 canLeave:false
-prompt:The wizard comes to life! It says: I AM THE GUARDIAN OF THIS HERE DUNGEON!! WHAT IS YOUR PURPOSE FOR BEING HERE
+prompt:The wizard comes to life! It says:I AM THE GUARDIAN OF THIS HERE DUNGEON!! WHAT IS YOUR PURPOSE FOR BEING HERE
 choices:"To Explore";"To Kill Everything";"I had no choice"
 responses:"Wow that's amazing! Have this map :3 I shall turn back into stone now byeee";"oh... :( bye - I shall return to the stone";"Aw :( here have this regen potion for when you need it, now I shall become rock once more"
 health:0;0;0
@@ -33,12 +33,12 @@ doors:ew
 description:You see a table in the middle of the room. There are 3 vials in front of you and a chalice. One vial says \"heal anything in the world!\", the second one says \"kill anything in the world\" and the third one looks to be some kind of poison
 canLeave:false
 prompt:"All of a sudden, a mysterious force takes over your body! You pour the first two vials into the chalice, and drink the third one. You start to feel weird and your vision gets blurry
-choices: "Do nothing";"Drink from the chalice"
-responses: "Oh no! You tried to walk away and tripped on a table leg! Your fall clears your mind, but really hurts.";"You feel wonky. You are dead and alive at the same time! But then, you observe yourself and realize you are alive. You also feel fully healed"
-health: -10;100
-reward: null;Schrödinger's Chalice
-repeatable: false;false
-doorOpens: True;True
+choices:"Do nothing";"Drink from the chalice"
+responses:"Oh no! You tried to walk away and tripped on a table leg! Your fall clears your mind, but really hurts.";"You feel wonky. You are dead and alive at the same time! But then, you observe yourself and realize you are alive. You also feel fully healed"
+health:-10;100
+reward:null;quantum_chalice
+repeatable:false;false
+doorOpens:True;True
 }
 {
 name:Pantry
@@ -47,12 +47,12 @@ doors:nw
 description:You enter a room with minimal lighting. There appears to be food on high shelves, but they’re all painted rocks
 canLeave:true
 prompt:2 of the rocks fall to the ground. one looks like a carrot, and the other a tomato.
-choices: "Pick up the tomato rock";"Pick up the carrot rock"
-responses: "It's a red rock... all of a sudden a rat runs by and steals the other one";"It's an orange rock... all of a sudden a rat runs by and steals the other one."
-health: 0;0
-reward: tomato_rock;carrot_rock
-repeatable: false;false
-doorOpens: true;true
+choices:"Pick up the tomato rock";"Pick up the carrot rock"
+responses:"It's a red rock... all of a sudden a rat runs by and steals the other one";"It's an orange rock... all of a sudden a rat runs by and steals the other one."
+health:0;0
+reward:tomato_rock;carrot_rock
+repeatable:false;false
+doorOpens:true;true
 }
 {
 name:Room of Healing
@@ -74,13 +74,13 @@ id:200
 doors:ns
 description:You see an encryption on the wall, but cannot make sense of it.
 canLeave:false
-prompt:Someone wearing a leather apron holding a hammer stands in front of you. They ask you: "are you interested in the art of blacksmithing?"
-choices: "Yes!";"No!!!";"I prefer the art of combat"
-responses: "Have a free trial blacksmith hammer! You only get one use out of it :)\nthe blacksmith disappears in a blinding light, leaving nothing but a hammer behind";"ok  ToT \nthe blacksmith runs away crying to a secret door that closes behind him";"I see I see... too bad for you I only make weapons not use them :p\nthe blacksmith vanishes before your eyes."
-health: 0;0;0
-reward: Blacksmith's hammer;null;null
-repeatable: false;false;false
-doorOpens: true;true;true
+prompt:Someone wearing a leather apron holding a hammer stands in front of you. They ask you:"are you interested in the art of blacksmithing?"
+choices:"Yes!";"No!!!";"I prefer the art of combat"
+responses:"Have a free trial blacksmith hammer! You only get one use out of it :)\nthe blacksmith disappears in a blinding light, leaving nothing but a hammer behind";"ok  ToT \nthe blacksmith runs away crying to a secret door that closes behind him";"I see I see... too bad for you I only make weapons not use them :p\nthe blacksmith vanishes before your eyes."
+health:0;0;0
+reward:trial_hammer;null;null
+repeatable:false;false;false
+doorOpens:true;true;true
 }
 {
 name:Lava River
@@ -89,12 +89,12 @@ doors:se
 description:You arrive at a room with with an empty circular moat in the center
 canLeave:false
 prompt:You hear gears rotating, and lava starts flowing, filling up the moat. The lava constantly splashes upwards.
-choices: "Pour Healing Potion";"Go Around the lava";"Jump over it"
-responses: "The healing potion manages to cool down the lava just enough to walk over it.";"You follow the lava back to your original position, for the moat surrounds you entirely.";"You manage to jump over the lava, but a little bit splashes onto you. It burns."
-health: 0;0;-40
-reward: null;null;null
-repeatable: false;true;false
-doorOpens: true;false;true
+choices:"Pour Healing Potion";"Go Around the lava";"Jump over it"
+responses:"The healing potion manages to cool down the lava just enough to walk over it.";"You follow the lava back to your original position, for the moat surrounds you entirely.";"You manage to jump over the lava, but a little bit splashes onto you. It burns."
+health:0;0;-40
+reward:null;null;null
+repeatable:false;true;false
+doorOpens:true;false;true
 itemReq:health_potion;null;null
 }
 {
@@ -104,12 +104,12 @@ doors:ew
 description:Craft to your heart's desire... If you have a hammer
 canLeave:true
 prompt:What would you like to craft?
-choices: "Nothing";"Shield";"Fork"
-responses: "The forge looks at you sadly...";"You crafted a shield that can deflect anything!";"A fork... Interesting choice!"
-health: 0;0;0
-reward: null;Shield;Fork
-repeatable: true;true;true
-doorOpens: true;true;true
+choices:"Nothing";"Shield";"Fork"
+responses:"The forge looks at you sadly...";"You crafted a shield that can deflect anything!";"A fork... Interesting choice!"
+health:0;0;0
+reward:null;shield;fork
+repeatable:true;true;true
+doorOpens:true;true;true
 itemReq:null;trial_hammer;trial_hammer
 }
 {
@@ -119,12 +119,12 @@ doors:sw
 description:A very competitive person stands in the middle of the room
 canLeave:false
 prompt:They ask you to a friendly game of rock paper scissors!
-choices: "rock";"paper";"scissors"
-responses: "You win!";"You tie!";"You lost!"
-health: 0;0;0
-reward: null;null;null
-repeatable: false;false;false
-doorOpens: true;true;true
+choices:"rock";"paper";"scissors"
+responses:"You win!";"You tie!";"You lost!"
+health:0;0;0
+reward:null;null;null
+repeatable:false;false;false
+doorOpens:true;true;true
 }
 {
 name:Warning Room
@@ -149,11 +149,11 @@ canLeave:false
 prompt:The mysterious person tells you that they are gonna kill you after eating the feast. They proceed to ask you if you brought anything with you for them to feast on
 choices:"I don't have anything";"Give Health Potion";"Give Schrödinger's Chalice";"Give Tomato Rock";"Give Carrot Rock";"Use Fork"
 responses:"You watch them eat a feast, and then kill you.";"The mysterious person feels fully healed! They then proceed to kill you...";"You give them the chalice. They drink it. They proceed to exist and not exist at the same time, but then gets observed and dies.";"You give them the rock. They see through it instantly and throws it at your feet. They try kill you, but at the last minute trip on the rock and fall flat on you";"They try eating it, but being a rock, it was hard. They are so focused on it that you can slip right past.";"You use the fork and eat a small portion of food, making it impossible to finish the feast, so you survive."
-health: -100;-100;0;-90;0;0
-reward: null;null;null;null;null;null
-repeatable: false;false;false;false;false;false
-doorOpens:  false;false;true;true;true;true
-itemReq: null;Health Potion;"Schrödinger's Chalice";"Tomato Rock";"Carrot Rock";"Fork"
+health:-100;-100;0;-90;0;0
+reward:null;null;null;null;null;null
+repeatable:false;false;false;false;false;false
+doorOpens:false;false;true;true;true;true
+itemReq:null;health_potion;quantum_chalice;tomato_rock;carrot_rock;fork
 }
 {
 name:End...?
@@ -162,12 +162,12 @@ doors:
 description:The statue of the wizard returns... It comes to life!!!
 canLeave:false
 prompt:The wizard prepares to attack. Looks like it's charging up a spell, giving you time
-choices: "Do nothing";"Use map";"Throw tomato rock";"Throw carrot rock";"Use Shield"
-responses: "The wizard casts a fireball upon you. It really hurts.";"You hold out the map. A fireball comes at you and goes right through it.";"The wizard catches the rock. All of a sudden, it says \"Oh I love tomatoes I'm gonna put this on my shelf!\"";"You throw the tomato rock, intercepting a fireball midair. The wizard looks angry.";"Your shield causes the spell to bounce back and defeat the wizard!"
-health: -50;-50;0;0;0
-reward: null;null;null;null;null
-repeatable: true;true;false;true;false
-doorOpens:  false;false;false;false;false
-itemReq: null;"Map";"Tomato Rock";Carrot rock;shield
-win: false;false;true;false;true
+choices:"Do nothing";"Use map";"Throw tomato rock";"Throw carrot rock";"Use Shield"
+responses:"The wizard casts a fireball upon you. It really hurts.";"You hold out the map. A fireball comes at you and goes right through it.";"The wizard catches the rock. All of a sudden, it says \"Oh I love tomatoes I'm gonna put this on my shelf!\"";"You throw the tomato rock, intercepting a fireball midair. The wizard looks angry.";"Your shield causes the spell to bounce back and defeat the wizard!"
+health:-50;-50;0;0;0
+reward:null;null;null;null;null
+repeatable:true;true;false;true;false
+doorOpens:false;false;false;false;false
+itemReq:null;map;tomato_rock;carrot_rock;shield
+win:false;false;true;false;true
 }

@@ -125,6 +125,7 @@ public class Item {
         return null;
     }
 
+
     public static void readItems(){
         try {
             File gameData = new File("GameItems.txt");
@@ -148,10 +149,16 @@ public class Item {
                         if (itemData[i]==null){
                             allAccounted=false;
                         }
+                        else if(itemData[i].contains("\\n")){
+                            while (itemData[i].contains("\\n")) {
+                                itemData[i] = itemData[i].substring(0,itemData[i].indexOf("\\n"))+"\n"+itemData[i].substring(itemData[i].indexOf("\\n")+2);
+                            }
+                        }
                     }
                     if (itemData[5].equals("null")){
                         itemData[5] = null;
                     }
+                    
                     
                     if (allAccounted){
                         if (itemData[6]==null){

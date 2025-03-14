@@ -23,6 +23,12 @@ public class Player {
         return null;
     }
 
+    public void addItem(Item i){
+        
+        inventory.add(i);
+        i.setParent(this);
+    }
+
 
     public boolean isAlive(){
         return (health>0);
@@ -45,12 +51,12 @@ public class Player {
 
     public void removeItem(String id){
         for (int i=0;i<inventory.size();i++){
+            System.out.println(inventory.get(i).getId());
             if (inventory.get(i).getId().equals(id)){
                 inventory.remove(i);
                 break;
             }
         }
-        System.err.println("ITEM TO REMOVE NOT FOUND:"+id);
     }
 
     //NO LONGER NEEDED

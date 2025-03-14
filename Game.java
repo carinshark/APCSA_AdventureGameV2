@@ -9,10 +9,12 @@ public class Game {
         ArrayList<Room> allRooms = Room.getRooms();
 
         //read item file ~   ~   ~   ~
+        System.out.println("creating items..");
         Item.readItems();
 
 
         // read rooms ~   ~   ~   ~
+        System.out.println("creating rooms..");
         Room.readRooms();
         // // ROOM 0000
         // String[] c0000 = {"Go into the door","Approach the bird"};
@@ -176,8 +178,12 @@ public class Game {
         Scanner scan = new Scanner(System.in);
         boolean gameRunning = true;
         //player creation
-        System.out.println("what is your name?");
-        Player currentPlayer = new Player(scan.nextLine(),getRoom(allRooms, 0));
+
+        
+
+        //create player; (change x in getRoom(allRooms,x) to starting room id)
+        System.out.println("name your player:");
+        Player currentPlayer = new Player(scan.nextLine(),getRoom(allRooms, 300));
         
         
         String playerResponse = "";
@@ -271,25 +277,42 @@ public class Game {
                                 choiceInt = Integer.parseInt(playerResponse);
                                 if (choiceInt>=0&&choiceInt<currentChallenge.getChoices().length){
 
-                                    if ((currentChallenge.getItemReq()==null)||(currentChallenge.getItemReq()[choiceInt]==null)||currentPlayer.hasItem(currentChallenge.getItemReq()[choiceInt])){
 
+                                    //check if item requirement
+                                    if ((currentChallenge.getItemReq()==null)||(currentChallenge.getItemReq()[choiceInt]==null)||currentPlayer.hasItem(currentChallenge.getItemReq()[choiceInt])){
+                                        
                                         System.out.println(currentChallenge.getResponses()[choiceInt]);
+
+                                        //health checker
                                         if (currentChallenge.getHealth()[choiceInt]!=0){
                                             System.out.println(currentChallenge.getHealth()[choiceInt]+" hp");
                                             currentPlayer.addHealth(currentChallenge.getHealth()[choiceInt]);
                                         }
-                                        if (currentChallenge.getRewards()[choiceInt]!=null){
+
+                                        //rewards checker
+                                        
+                                        // for (String x:currentChallenge.getRewards()){
+                                        //     System.out.println(x==null?false:x.equals("null"));
+                                        // }
+
+                                        if (currentChallenge.getRewards()!=null&&currentChallenge.getRewards()[choiceInt]!=null&&!currentChallenge.getRewards()[choiceInt].equals("null")){
                                             System.out.println("you have acquired "+Item.getName(currentChallenge.getRewards()[choiceInt]));
-                                            currentPlayer.getInventory().add(Item.createItem(currentChallenge.getRewards()[choiceInt]));
-                                            currentPlayer.getInventory().getLast().setParent(currentPlayer);
+                                            currentPlayer.addItem(Item.createItem(currentChallenge.getRewards()[choiceInt]));;
                                         }
+
+                                        //check if repeatable
+                                        // System.out.println(currentChallenge.getRepeatable()[choiceInt]);
                                         if (currentChallenge.getRepeatable()[choiceInt]==false){
                                             isSolving = false;
                                             currentChallenge.complete();
                                         }
+
+                                        //open doors if can
                                         if (currentChallenge.getOpenDoors()[choiceInt]==true){
                                             currentPlayer.getLocation().openDoors();
                                         }
+
+                                        //win detection
                                         if (currentChallenge.getWin()!=null){
                                             if (currentChallenge.getWin()[choiceInt]){
                                                 System.out.println("Nice job! you won the game!");
@@ -313,9 +336,6 @@ public class Game {
                                 } else{
                                     System.out.println("this choice is not one of the options!");
                                 }
-
-
-
 
                             } else{
                                 System.out.println("this is not a valid response - please pick a number!");
@@ -399,7 +419,7 @@ public class Game {
         if (gameWon){
             System.out.println("YOU WON!!!! WOOOOOOO");
         }
-        System.out.println("Thank you for playing!");
+        System.out.println("Thank you for playing, "+currentPlayer.getName()+"!");
         scan.close();
 
 
