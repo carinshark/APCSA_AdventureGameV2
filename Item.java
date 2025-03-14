@@ -85,8 +85,6 @@ public class Item {
 
 
     public void printInfo(){
-        System.out.println(name);
-        System.out.println(text);
         if (uses>0){
             System.out.println("Uses:"+uses);            
         } else if (uses==-1){
